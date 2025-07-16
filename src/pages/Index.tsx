@@ -175,6 +175,13 @@ const Index = () => {
       link: "https://github.com/lirikrexhepi/aavaMatach",
     },
     {
+      title: "Vision",
+      description:
+        "Vision is an AI overlay that gives models a sense of ‘consciousness’—by letting them truly see and understand what’s on your screen.",
+      tech: ["C++", "Python", "Tesseract OCR", "Open AI", "AI"],
+      link: "https://github.com/lirikrexhepi/Vision",
+    },
+    {
       title: "Pupill",
       description:
         "Pupill is a LMS that transforms grading, homework sharing, and teacher-parent communication into a seamless digital experience.",
