@@ -182,6 +182,13 @@ const Index = () => {
       link: "https://github.com/lirikrexhepi/Vision",
     },
     {
+      title: "Vitasense",
+      description:
+        "AI-powered medical assistant that provides instant health insights, answers, and guidance—bringing accessible healthcare expertise to your fingertips.",
+      tech: ["HTML", "Tailwind", "JavaScript", "Open AI", "AI", "Healthcare"],
+      link: "https://vitasenseai.staticrun.app/",
+    },
+    {
       title: "Pupill",
       description:
         "Pupill is a LMS that transforms grading, homework sharing, and teacher-parent communication into a seamless digital experience.",
@@ -361,7 +368,7 @@ const Index = () => {
           <div
             ref={projectsSectionRef}
             className={`max-w-7xl mx-auto px-4 sm:px-8 w-full h-full ${
-              isMobile ? "overflow-y-auto pt-8 pb-8" : ""
+              isMobile ? "overflow-y-auto pt-8 pb-16" : ""
             }`}
             style={isMobile ? { maxHeight: "100vh" } : {}}
           >
@@ -374,44 +381,98 @@ const Index = () => {
               <div
                 className={`grid gap-4 sm:gap-8 ${
                   isMobile
-                    ? "grid-cols-1"
+                    ? "grid-cols-1 place-items-center"
                     : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
                 }`}
               >
-                {projects.map((project, index) => (
-                  <a
-                    key={project.title}
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative overflow-hidden glass zen-hover glow-button no-underline"
-                  >
-                    <div className="p-6 sm:p-10 space-y-4 sm:space-y-6">
-                      <div className="flex items-start justify-between">
-                        <h3 className="font-display text-lg sm:text-xl font-bold text-black group-hover:text-black/80 transition-colors">
-                          {project.title}
-                        </h3>
-                        <ExternalLink
-                          className="text-black/40 group-hover:text-black transition-colors"
-                          size={16}
-                        />
+                {projects.map((project, index) => {
+                  // On desktop, after the first row (3 cards), insert an empty div for the middle column of the second row
+                  if (!isMobile && index === 4) {
+                    return [
+                      <div key="empty-col" className="hidden lg:block" />,
+                      <a
+                        key={project.title}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative overflow-hidden glass zen-hover glow-button no-underline lg:scale-90 lg:mx-auto"
+                        style={isMobile ? { width: "90%" } : {}}
+                      >
+                        <div
+                          className={
+                            isMobile
+                              ? "p-4 space-y-2"
+                              : "p-6 sm:p-10 space-y-4 sm:space-y-6"
+                          }
+                        >
+                          <div className="flex items-start justify-between">
+                            <h3 className="font-display text-lg sm:text-xl font-bold text-black group-hover:text-black/80 transition-colors">
+                              {project.title}
+                            </h3>
+                            <ExternalLink
+                              className="text-black/40 group-hover:text-black transition-colors"
+                              size={16}
+                            />
+                          </div>
+                          <p className="text-black/70 text-sm sm:text-base leading-relaxed font-light">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tech.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-2 sm:px-3 py-1 glass font-mono text-xs text-black/60 lowercase tracking-wider"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </a>,
+                    ];
+                  }
+                  return (
+                    <a
+                      key={project.title}
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative overflow-hidden glass zen-hover glow-button no-underline"
+                      style={isMobile ? { width: "90%" } : {}}
+                    >
+                      <div
+                        className={
+                          isMobile
+                            ? "p-4 space-y-2"
+                            : "p-6 sm:p-10 space-y-4 sm:space-y-6"
+                        }
+                      >
+                        <div className="flex items-start justify-between">
+                          <h3 className="font-display text-lg sm:text-xl font-bold text-black group-hover:text-black/80 transition-colors">
+                            {project.title}
+                          </h3>
+                          <ExternalLink
+                            className="text-black/40 group-hover:text-black transition-colors"
+                            size={16}
+                          />
+                        </div>
+                        <p className="text-black/70 text-sm sm:text-base leading-relaxed font-light">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2 sm:px-3 py-1 glass font-mono text-xs text-black/60 lowercase tracking-wider"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <p className="text-black/70 text-sm sm:text-base leading-relaxed font-light">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 sm:px-3 py-1 glass font-mono text-xs text-black/60 lowercase tracking-wider"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </a>
-                ))}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
